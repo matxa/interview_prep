@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+from typing import Counter
+
+
 class Node:
 	def __init__(self, data, next_node):
 		self.data = data
@@ -60,12 +63,25 @@ class LinkedList:
 				break
 			current_node = current_node.next_node
 
+	def reverse(self):
+		if self.length() == 1 or self.head is None:
+			return
+		current_node = self.head
+		self.head = None
+		while current_node:
+			self.insert_at_beginning(current_node.data)
+			current_node = current_node.next_node
+
 	def add_from_array(self, list_of_data):
 		self.head = None
 		if len(list_of_data) <= 0:
 			raise Exception("Array is empty")
 		for i in range(len(list_of_data)):
 			self.insert_in_sorted(list_of_data[i])
+
+	def pop(self):
+		self.head = self.head.next_node
+		return
 
 	def length(self):
 		if self.head is None:
@@ -77,11 +93,42 @@ class LinkedList:
 			counter += 1
 		return counter
 
+	def list_sum(self):
+		sum_total = 0
+		current_node = self.head
+		while current_node:
+			sum_total += current_node.data
+			current_node = current_node.next_node
+		return sum_total
+
+	def delete_at_index(self, index):
+		if index > self.length() or index < 0:
+			raise Exception("Out of range index")
+		if index == 0:
+			self.pop()
+			return
+
+		count = 0
+		current_node = self.head
+		while current_node.next_node:
+			if (count + 1) == index:
+				current_node.next_node = None
+				break
+			if count == (index - 1):
+				current_node.next_node = current_node.next_node.next_node
+				break
+			count+=1
+			current_node = current_node.next_node
+
 	def print_ll(self):
 		if self.head is None:
 			print("LinkedList is empty")
 
 		current_node = self.head
 		while current_node:
-			print(f"[ {current_node.data} ]", end="--" if current_node.next_node != None else "\n")
+			print(f"[ {current_node.data} ]", end="-->" if current_node.next_node != None else "\n")
 			current_node = current_node.next_node
+
+	def free(self):
+		self.head = None
+		return
