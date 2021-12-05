@@ -33,9 +33,11 @@ def urlify(string, string_len):
 
 
 def palindrome_permutation(str1):
+	str1 = str1.replace(' ', '')
 	str1 = sorted(str1)
 	print(str1)
-
+	str1.reverse()
+	print(str1)
 
 def one_way(str1, str2):
 	str1_len = len(str1)
@@ -77,25 +79,6 @@ def string_compression(string):
 	compressed_string += (current_letter + str(current_letter_count))
 	return compressed_string if len(compressed_string) < len_string else string
 
-"""
-Input
-[
-	[0-0, 0-1, 0-2, 0-3]
-
-	[1-0, 1-1, 1-2, 1-3]
-
-	[2-0, 2-1, 2-2, 2-3]
-
-	[3-0, 3-1, 3-2, 3-3]
-],
-Output
-[
-	[13, 09, 05, 01],
-	[14, 10, 06, 02],
-	[15, 11, 07, 03],
-	[16, 12, 08, 04]
-]
-"""
 
 def matrix_print(matrix):
 	print(end="\n")
@@ -103,9 +86,10 @@ def matrix_print(matrix):
 		print(f"\t{ls}", end="\n")
 	print(end="\n")
 
+
 def rotate_matrix(matrix):
 	matrix_len = len(matrix)
-	new_matrix = [[0, 0, 0, 0] for i in range(matrix_len)]
+	new_matrix = [[0 for i in range(matrix_len)] for i in range(matrix_len)]
 
 	for out in range(matrix_len):
 		for inner in range(matrix_len):
@@ -114,13 +98,17 @@ def rotate_matrix(matrix):
 	return new_matrix
 
 
-matrix = [
-	[1, 2, 3, 4],
-	[5, 6, 7, 8],
-	[9, 10, 11, 12],
-	[13, 14, 15, 16]
-]
-print("---- BEFORE ----")
-matrix_print(matrix)
-print("---- AFTER ----")
-matrix_print(rotate_matrix(matrix))
+def binary_search():
+	pass
+
+
+# matrix = [
+# 	[1, 2, 3, 4],
+# 	[5, 6, 7, 8],
+# 	[9, 10, 11, 12],
+# 	[13, 14, 15, 16]
+# ]
+# print("---- BEFORE ----")
+# matrix_print(matrix)
+# print("---- AFTER ----")
+# matrix_print(rotate_matrix(matrix))
